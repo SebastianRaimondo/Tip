@@ -1,0 +1,5 @@
+package com.ciu.app.dto.mapper;
+
+public interface PatientMapper {
+
+}

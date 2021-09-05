@@ -1,0 +1,15 @@
+package com.ciu.app.dto.mapper;
+
+import org.mapstruct.Mapper;
+
+import com.ciu.app.dto.PatientDto;
+import com.ciu.app.entity.Patient;
+
+@Mapper
+public interface PatientMapper {
+
+
+	Patient toEntity(PatientDto pDto);
+	PatientDto toDto(Patient patient);
+	
+}

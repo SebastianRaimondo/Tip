@@ -1,0 +1,5 @@
+package com.ciu.app.service;
+
+public class PatientServiceImplementation {
+
+}

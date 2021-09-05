@@ -1,0 +1,9 @@
+package com.ciu.app.controller;
+
+import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
+
+@Component
+public @interface PatientMapper {
+
+}

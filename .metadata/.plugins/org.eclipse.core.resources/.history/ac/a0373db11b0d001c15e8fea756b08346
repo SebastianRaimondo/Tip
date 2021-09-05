@@ -1,0 +1,115 @@
+package com.ciu.app.controller;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ciu.app.entity.Patient;
+import com.ciu.app.service.PatientService;
+
+import Dto.PatientDto;
+import DtoMapper.DtoPatientMapper;
+
+@RestController
+@RequestMapping("/api/patients")
+public class PatientController {
+	
+	@Autowired
+	private PatientService patientService;
+	
+	private DtoPatientMapper mapper;
+	
+	
+	// Create a new patient
+
+	@PostMapping
+	public ResponseEntity<?> create(@RequestBody Patient patient) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(patientService.save(patient));
+	}
+	
+	// find patient by id
+	
+	
+	@GetMapping("/{id}")
+	
+      public ResponseEntity<?> read(@PathVariable(value = "id") Long userId){
+		
+		Patient patient = this.patientService.findById(userId);
+		
+		
+		if(patient == null) {
+			
+			return ResponseEntity.notFound().build();
+		}
+		
+		//PatientDto prueba = new PatientDto();
+		//prueba.setAddress(patient.getAddress());
+		//prueba.setName(patient.getName());
+		//prueba.setSurname(patient.getSurname());
+		
+		return ResponseEntity.ok(this.mapper.entityToDto(patient));
+	}
+	
+	
+	// update a patient
+
+    @PutMapping("/{id}")
+	public ResponseEntity<?> update(@RequestBody Patient patientDetails, @PathVariable(value = "id") Long patientId) {
+			
+    	Patient patient = patientService.findById(patientId);
+			
+			if(patient == null) {
+				
+				return ResponseEntity.notFound().build();
+			}
+			
+			
+			patient.setName(patientDetails.getName());
+			patient.setSurname(patientDetails.getSurname());
+			patient.setAddress(patientDetails.getAddress());
+			patient.setPhoneNumber(patientDetails.getPhoneNumber());
+			patient.setDni(patientDetails.getDni());
+			
+	        return ResponseEntity.status(HttpStatus.CREATED).body(patientService.save(patient));
+	}
+    
+     
+			
+    // delete a patient
+
+ 	@DeleteMapping("/{id}")
+ 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long patientId) {
+ 		
+ 		if (patientService.findById(patientId) == null) {
+ 			return ResponseEntity.notFound().build();
+ 		}
+
+ 		patientService.deleteById(patientId);
+ 		return ResponseEntity.ok().build();
+ 	}
+	
+
+    // read all patients
+
+ 	@GetMapping
+ 	public List<Patient> readAll() {
+
+ 		List<Patient> patients = StreamSupport.
+ 				stream(patientService.findAll().spliterator(), false).
+ 				collect(Collectors.toList());
+ 		
+ 		return patients;
+ 	}
+}

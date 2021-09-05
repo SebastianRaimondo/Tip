@@ -1,0 +1,15 @@
+package com.ciu.app;
+
+import com.ciu.app.dto.PatientDto;
+
+public class UpDaterPatientDto {
+	
+	
+	public static PatientDto upDatePatientDto(PatientDto pDto) {
+		
+		PatientDto newPDto = new PatientDto(pDto.getName(), pDto.getSurname(), pDto.getPhoneNumber(), pDto.getAddress(), pDto.getDni());
+	
+		return newPDto;
+	}
+
+}

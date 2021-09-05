@@ -1,0 +1,25 @@
+package DtoMapper;
+
+import org.springframework.stereotype.Component;
+
+import com.ciu.app.entity.Patient;
+
+import Dto.PatientDto;
+@Component
+public class DtoPatientMapper {
+	
+	
+	public PatientDto entityToDto(Patient patient) {
+		
+		PatientDto result = new PatientDto(patient.getName(),
+				patient.getSurname(),
+				patient.getPhoneNumber(),
+				patient.getAddress(),
+				patient.getDni()); 
+		
+		
+		return result;
+		
+	}
+
+}

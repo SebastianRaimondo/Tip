@@ -1,0 +1,14 @@
+package com.ciu.app.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ciu.app.service.PatientService;
+
+@RestController
+@RequestMapping("/api/patients")
+public class PatientController {
+	
+	private PatientService patientService;
+
+}

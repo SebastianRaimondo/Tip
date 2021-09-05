@@ -1,0 +1,11 @@
+package Dto;
+
+import java.io.Serializable;
+
+public class PatientDto implements Serializable{
+
+	private static final long serialVersionUID = -1780082247320205887L;
+	
+	
+
+}

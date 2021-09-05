@@ -1,0 +1,29 @@
+package com.ciu.app.dto.mapper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+//import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
+
+import com.ciu.app.dto.PatientDto;
+import com.ciu.app.entity.Patient;
+
+@Component
+public interface PatientMapper {
+
+
+	Patient toEntity(PatientDto pDto);
+	PatientDto toDto(Patient patient);
+	
+	default List<PatientDto> toDtoList(List<Patient> patientList){
+		
+		if(patientList == null){
+			return new ArrayList<>();
+		}
+		
+		return patientList.stream().map(this:: toDto).collect(Collectors.toList());
+	}
+	
+}

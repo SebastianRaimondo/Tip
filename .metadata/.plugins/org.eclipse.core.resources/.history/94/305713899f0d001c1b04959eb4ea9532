@@ -1,0 +1,5 @@
+package com.ciu.app.controller;
+
+public interface PatientMapper {
+
+}

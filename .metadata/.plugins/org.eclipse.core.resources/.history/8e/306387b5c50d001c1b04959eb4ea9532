@@ -1,0 +1,12 @@
+package com.ciu.app;
+
+public class UpDaterPatientDto {
+	
+	
+	public static PatientDto upDatePatientDto(PatientDto pDato) {
+		
+		
+		return 
+	}
+
+}

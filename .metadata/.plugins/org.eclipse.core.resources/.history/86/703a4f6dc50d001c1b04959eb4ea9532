@@ -1,0 +1,5 @@
+package com.ciu.app;
+
+public class UpDaterDto {
+
+}

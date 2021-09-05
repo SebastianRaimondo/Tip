@@ -1,0 +1,24 @@
+package DtoMapper;
+
+import com.ciu.app.entity.Patient;
+
+import Dto.PatientDto;
+
+public class DtoPatientMapper {
+	
+	
+	public PatientDto entityToDto(Patient patient) {
+		
+		PatientDto result = new PatientDto(); 
+		
+		result.setAddress(patient.getAddress());
+		result.setName(patient.getName());
+		result.setPhoneNumber(patient.getPhoneNumber());
+		result.setSurname(patient.getSurname());
+		result.setDni(patient.getDni());
+		
+		return result;
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.ciu.app.repository;
+
+public interface PatientRepository {
+
+}
